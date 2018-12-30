@@ -49,3 +49,6 @@ Route::get('completado/{id}', [
     'uses' => 'TareasController@completado',
     'as' => 'completado'
 ]);
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

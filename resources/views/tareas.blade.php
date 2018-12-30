@@ -37,8 +37,12 @@
                                                 <a href="{{ route('completado', $tarea->id) }}" class="btn btn-secondary">Completar</a>
                                             @endif</td>
                                         <td>
+                                            @can('destroy', $tarea)
                                             <a href="{{ route('delete', $tarea->id) }}" class="btn btn-danger">X</a>
+                                            @endcan
+                                            @can('edit', $tarea)
                                             <a href="{{ route('edit', $tarea->id) }}" class="btn btn-primary">Edit</a>
+                                            @endcan
                                         </td>
                                     </tr>
                                     @endforeach

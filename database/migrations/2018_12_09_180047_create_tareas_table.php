@@ -16,6 +16,8 @@ class CreateTareasTable extends Migration
         Schema::create('tareas', function (Blueprint $table) {
             $table->increments('id');
             $table->string('tarea');
+            $table->unsignedInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->boolean('completed')->default(0);
             $table->timestamps();
         });

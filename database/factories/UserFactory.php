@@ -24,8 +24,4 @@ $factory->define(App\User::class, function (Faker $faker) {
 });
 
 
-$factory->define(App\Tarea::class, function (Faker $faker) {
-    return [
-        'tarea' => $faker->sentence(10),
-    ];
-});
+

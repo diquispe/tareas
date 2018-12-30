@@ -56,6 +56,8 @@ class TareasController extends Controller
     {
         $tarea = Tarea::find($id);
 
+        //$this->authorize('edit');
+
         return view('edit')->with('tarea', $tarea);
     }
 
@@ -68,7 +70,11 @@ class TareasController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+
+
         $tarea = Tarea::find($id);
+        $this->authorize('update', $tarea);
         $tarea->tarea = $request->tarea;
         $tarea->completed = $request->estado;
 
@@ -87,6 +93,7 @@ class TareasController extends Controller
     public function destroy($id)
     {
         $tarea = Tarea::find($id);
+        $this->authorize('destroy', $tarea);
         $tarea->delete();
         return redirect()->back();
     }

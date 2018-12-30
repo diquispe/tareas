@@ -3,7 +3,11 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Bootstrap Dashboard by Bootstrapious.com</title>
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <title>{{ config('app.name', 'Laravel') }}</title>
+
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
@@ -37,7 +41,7 @@
         <div class="sidenav-header d-flex align-items-center justify-content-center">
             <!-- User Info-->
             <div class="sidenav-header-inner text-center"><img src="{{ asset('dashboard/img/avatar-7.jpg') }}" alt="person" class="img-fluid rounded-circle">
-                <h2 class="h5">Nathan Andrews</h2><span>Web Developer</span>
+                <h2 class="h5">{{ Auth::user()->name }}</h2><span>Web Developer {{ Auth::user()->id }}</span>
             </div>
             <!-- Small Brand information, appears on minimized sidebar-->
             <div class="sidenav-header-logo"><a href="index.html" class="brand-small text-center"> <strong>B</strong><strong class="text-primary">D</strong></a></div>
@@ -139,7 +143,14 @@
                             </ul>
                         </li>
                         <!-- Log out-->
-                        <li class="nav-item"><a href="login.html" class="nav-link logout"> <span class="d-none d-sm-inline-block">Logout</span><i class="fa fa-sign-out"></i></a></li>
+                        <li class="nav-item">
+                            <a href="{{ route('logout') }}" class="nav-link logout"
+                               onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();"> <span class="d-none d-sm-inline-block">{{ __('Logout') }}</span><i class="fa fa-sign-out"></i></a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+                        </li>
                     </ul>
                 </div>
             </div>
